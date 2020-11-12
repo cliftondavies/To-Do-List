@@ -1,1 +1,1 @@
-alert('everything is working');
+import './assets/css/style.css';
