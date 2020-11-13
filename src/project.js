@@ -4,16 +4,14 @@ const Project = class {
     this.list = [];
   }
 
+  static categories = [];
+
   addTodoToProject(todo) {
     return this.list.push(todo);
   }
 
-  // removeTodoFromProject(todo){
-  //   return this.list.remove(todo);
-  // }
-
-  // display list of categories //optional
-
-  // find a method to delete todos from projects
-
+  // add to current list of categories (optional)
+  static addCategory(project) {
+    Project.categories.push(project.projectName);
+  }
 };

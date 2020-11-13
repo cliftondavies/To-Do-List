@@ -8,13 +8,34 @@
 
 //show single todo(title, description, dueDate, priority, category)
 
-
-
-
-
-
 // create new projects category
 
 // remove project
 
 //edit project
+
+
+
+
+
+// render default project with the whole list in storage
+
+// render projects and todos by category
+
+// create new projects category
+
+// create new todo
+
+// expand todo
+
+// set todo as complete
+
+// change priority
+
+// view todo form
+
+// view project form
+
+// delete project
+
+// delete todo

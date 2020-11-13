@@ -1,20 +1,54 @@
-// view all projects on homepage 
+// retrieve todo list (maybe pass a particular category)
 
-// add todo to the storage
+// save project
 
-//remove todo from the storage
+// save todo to the storage
+// const saveTodo = () => {
+//   const title =
+//   const
+//   const id = Todo.incrementId;
+//   const todo = new Todo()
 
-//edit single todo
+//   const list = localStorage.getItem
+//   const getProject = list.find(where category of project is ==)
+//   getProject.list.push(todo)
+//   list.push(getProject)
+//   localStorage.setItem('', '')
+// }
 
-//show single todo
-
-
-
-
-
-
-// create new projects category
+// remove todo from the storage
 
 // remove project
 
-//edit project
+const todolist = [
+  {
+    title: 'work',
+    list_of_todos: [{
+      title: 'todo-title1',
+      description: 'todo description1',
+      dueDate: 'todo due date',
+      priority: 'todo-priority',
+    },
+    {
+      title: 'todo-title2',
+      description: 'todo description2',
+      dueDate: 'todo due date',
+      priority: 'todo-priority',
+    }],
+  },
+  {
+    title: 'shopping',
+    list_of_todos: [{
+      title: 'todo-title',
+      description: 'todo description',
+      dueDate: 'todo due date',
+      priority: 'todo-priority',
+    },
+    {
+      title: 'todo-title',
+      description: 'todo description',
+      dueDate: 'todo due date',
+      priority: 'todo-priority',
+    }],
+  },
+];
