@@ -57,7 +57,7 @@ const DOM = () => {
     navBar.appendChild(createTodoBtn);
     const wrapper = htmlTags('div', 'wrapper', 'wrapper');
     const projectColumn = htmlTags('section', 'project-column', 'project-column', 'project column');
-    const todoColumn = htmlTags('section', 'todo-column', 'todo-column', 'todo clmn');
+    const todoColumn = htmlTags('section', 'todo-column', 'todo-column', 'todo column');
     container.appendChild(wrapper);
     wrapper.appendChild(projectColumn);
     wrapper.appendChild(todoColumn);
@@ -68,6 +68,15 @@ const DOM = () => {
     const projectColumn = document.querySelector('.projet-column');
     const projectCard = htmlTags('article', 'project-card', `${project.projectName}`);
     projectColumn.appendChild(projectCard);
+  };
+  //create todolist wrapper
+
+  const createListWrapper = (id) => {
+
+    const wrapper = htmlTags('div', id, 'todo-wrapper-hidden', 'hidden');
+    const todoColumn = document.querySelector('.todo-column');
+    todoColumn.appendChild(wrapper);
+
   };
 
   // create unexpanded todo card
@@ -105,6 +114,7 @@ const DOM = () => {
     createProjectCard,
     collapsedTodoCard,
     expandedTodoCard,
+    createListWrapper,
   };
 };
 

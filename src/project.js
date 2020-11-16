@@ -15,3 +15,5 @@ const Project = class {
     Project.categories.push(project.projectName);
   }
 };
+
+export { Project as default };

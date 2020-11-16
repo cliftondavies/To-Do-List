@@ -1,12 +1,12 @@
 const Todo = class {
-  constructor(title, description, dueDate, priority, category, id = 0) {
+  constructor(title, description, dueDate, priority, category, generateID ) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
     this.category = category;
     this.completed = false;
-    this.id = id;
+    this.id = generateID();
   }
 
   static numberOfTodos = 0
