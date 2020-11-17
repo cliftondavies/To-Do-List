@@ -1,31 +1,29 @@
 const Todo = class {
-  constructor(title, description, dueDate, priority, category, generateID ) {
+  constructor(title, description, dueDate, priority, category, generateID) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
-    this.priority = priority;
-    this.category = category;
-    this.completed = false;
+    this.priority = priority; // implement dropdown with low or high priority
+    this.category = category; // implement dropdown with list of categories from projects class Project.categories
+    this.completed = 'Incomplete'; // implement dropdown with complete or incomplete
     this.id = generateID();
   }
 
   static numberOfTodos = 0
 
-  static incrementId = () => {
-    return Todo.numberOfTodos++;
+  static incrementId() {
+    return Todo.numberOfTodos + 1;
   }
 
   // toggleCompleteStatus(){}
-  const toggleStatus = () => {
-    // retrieve whole list
-    // find todo project category
-    // find the todo
-  };
+  updateStatus() {
+    this.completed = (this.completed === 'Complete') ? 'Incomplete' : 'Complete';
+  }
 
   // changePriority(){}
-  const changePriority = () => {
-    // retrieve whole list
-    // find todo project category
-    // find the todo
-  };
+  updatePriority() {
+    this.priority = (this.priority === 'Low') ? 'High' : 'Low';
+  }
 };
+
+export { Todo as default };
