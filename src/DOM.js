@@ -67,24 +67,28 @@ const DOM = () => {
   const createProjectCard = (project) => {
     const projectColumn = document.querySelector('.projet-column');
     const projectCard = htmlTags('article', 'project-card', `${project.projectName}`);
+    // add heading
+    // add delete button
+
     projectColumn.appendChild(projectCard);
   };
-  //create todolist wrapper
 
+  // create todolist wrapper
   const createListWrapper = (id) => {
-
     const wrapper = htmlTags('div', id, 'todo-wrapper-hidden', 'hidden');
     const todoColumn = document.querySelector('.todo-column');
-    todoColumn.appendChild(wrapper);
 
+    todoColumn.appendChild(wrapper);
   };
 
   // create unexpanded todo card
   const collapsedTodoCard = (todo) => {
     const todoColumn = document.querySelector('.todo-column');
-    const todoCard = htmlTags('article', 'todo-card', '');
+    const todoCard = htmlTags('article', 'collapsed-todo-card', '');
     const todoTitle = htmlTags('span', 'todo-title', `${todo.Title}`);
     const todoDate = htmlTags('span', 'todo-date', `${todo.dueDate}`);
+    // add delete button
+
     todoCard.appendChild(todoTitle);
     todoCard.appendChild(todoDate);
     todoColumn.appendChild(todoCard);
@@ -93,12 +97,16 @@ const DOM = () => {
   // create expanded todo card
   const expandedTodoCard = (todo) => {
     const todoColumn = document.querySelector('.todo-column');
-    const todoCard = htmlTags('article', 'todo-card', '');
+    const todoCard = htmlTags('article', 'expanded-todo-card', '');
     const todoTitle = htmlTags('h3', 'todo-title', `${todo.Title}`);
     const todoDescription = htmlTags('h4', 'todo-description', `${todo.description}`);
     const todoDate = htmlTags('span', 'todo-date', `${todo.dueDate}`);
     const todoPriority = htmlTags('button', 'todo-priority', `${todo.priority}`);
     const todoCompleted = htmlTags('button', 'todo-priority', `${todo.completed}`);
+    // add delete button
+
+    todoCard.setAttribute('data-id', 'todo.id');
+    todoCard.setAttribute('data-category', 'todo.category');
     todoCard.appendChild(todoTitle);
     todoCard.appendChild(todoDescription);
     todoCard.appendChild(todoDate);
