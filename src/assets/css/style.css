@@ -9,9 +9,24 @@ body { background-color: rgb(224, 77, 32);}
   display: flex
 }
 
-/* .show-todo-form
+.project-form{
+  display: none;
+}
 
-.show-project-form
+.show-project-form {
+  display: block;
+}
+
+.todo-form {
+  display: none;
+}
+
+.show-todo-form{
+  display: block;
+}
+
+/* 
+.show-todo-form
 
 .hide-todo-card
 

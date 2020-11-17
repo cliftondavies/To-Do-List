@@ -9,8 +9,6 @@ const Todo = class {
     this.id = generateID();
   }
 
-  static numberOfTodos = 0
-
   static incrementId() {
     return Todo.numberOfTodos + 1;
   }
@@ -25,5 +23,6 @@ const Todo = class {
     this.priority = (this.priority === 'Low') ? 'High' : 'Low';
   }
 };
+Todo.numberOfTodos = 0;
 
 export { Todo as default };

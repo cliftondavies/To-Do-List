@@ -11,7 +11,7 @@ const Storage = class {
     }
   }
 
-  // save project
+  // // save project
   // static saveProject(project) {
   //   const projects = Storage.getList();
   //   projects.push(project);
@@ -42,9 +42,17 @@ const Storage = class {
     localStorage.setItem('list', JSON.stringify(projects));
   }
 
-  // remove todo from the storage (here or in todo)
-
   // remove project
+  static removeProject(projects, index) {
+    projects.splice(index, 1);
+    localStorage.setItem('list', JSON.stringify(projects));
+
+  }
+
+  static removeTodo(){
+    
+  }
+  // remove todo from the storage (here or in todo)
 };
 
 export { Storage as default };

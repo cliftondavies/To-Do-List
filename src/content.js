@@ -1,6 +1,4 @@
-// import htmlTags from './htmlTags';
-
-const DOM = () => {
+const content = () => {
   const container = document.getElementById('main');
   const wrapper = document.getElementById('wrapper');
 
@@ -19,6 +17,7 @@ const DOM = () => {
     const projectForm = htmlTags('form', 'project-form', 'form');
     const projectInput = htmlTags('input', 'project-input', 'input');
     const projectButton = htmlTags('button', 'project-button', 'button', 'create project');
+    projectButton.setAttribute('type', 'submit');
 
     container.insertBefore(formWrapper, wrapper);
     formWrapper.appendChild(projectForm);
@@ -50,8 +49,8 @@ const DOM = () => {
     const container = htmlTags('main', 'main', 'main');
     document.body.appendChild(container);
     const navBar = htmlTags('nav', 'nav', 'nav');
-    const createProjectBtn = htmlTags('button', 'createProjectBtn', 'navBtn', 'create project');
-    const createTodoBtn = htmlTags('button', 'createTodoBtn', 'navBtn', 'create todo');
+    const createProjectBtn = htmlTags('button', 'createProjectBtn', 'navBtn', 'add project');
+    const createTodoBtn = htmlTags('button', 'createTodoBtn', 'navBtn', 'add todo');
     container.appendChild(navBar);
     navBar.appendChild(createProjectBtn);
     navBar.appendChild(createTodoBtn);
@@ -65,8 +64,11 @@ const DOM = () => {
 
   // create project card
   const createProjectCard = (project) => {
-    const projectColumn = document.querySelector('.projet-column');
-    const projectCard = htmlTags('article', 'project-card', `${project.projectName}`);
+    const projectColumn = document.querySelector('.project-column');
+    const projectCard = htmlTags('article', 'project-card');
+    const projectHeading = htmlTags('h3', 'project-heading');
+    projectHeading.textContent = project.projectName;
+    projectCard.appendChild(projectHeading);
     // add heading
     // add delete button
 
@@ -126,4 +128,4 @@ const DOM = () => {
   };
 };
 
-export { DOM as default };
+export { content as default };

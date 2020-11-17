@@ -4,7 +4,6 @@ const Project = class {
     this.list = [];
   }
 
-  static categories = [];
 
   addTodo(todo) {
     return this.list.push(todo);
@@ -20,5 +19,6 @@ const Project = class {
     Project.categories.push(project.projectName);
   }
 };
+Project.categories = [];
 
 export { Project as default };
