@@ -10,46 +10,45 @@ const Storage = class {
       JSON.parse(localStorage.getItem('list'));
     }
   }
+
   // save project
+  // static saveProject(project) {
+  //   const projects = Storage.getList();
+  //   projects.push(project);
+  //   localStorage.setItem('list', JSON.stringify(projects));
+  // }
 
-  static saveProject(project) {
+  // static saveTodo(todo) {
+  //   const projects = Storage.getList();
+  //   const project = projects.find(project => project.projectName === todo.category);
+  //   project.list.push(todo);
+  //   const index = projects.indexOf(project);
+  //   projects[index] = project;
+  //   localStorage.setItem('list', JSON.stringify(projects));
+  // }
+
+  static save(obj) {
     const projects = Storage.getList();
-    projects.push(project);
+
+    if (obj instanceof Project) {
+      projects.push(obj);
+    } else {
+      const project = projects.find(project => project.projectName === obj.category);
+      const index = projects.indexOf(project);
+      project.addTodo(obj);
+      projects[index] = project;
+    }
+
     localStorage.setItem('list', JSON.stringify(projects));
   }
 
-  static saveTodo(todo) {
-    const projects = Storage.getList();
-    const project = projects.find(project => project.projectName === todo.category);
-    project.list.push(todo);
-    const index = projects.indexOf(project);
-    projects[index] = project;
-    localStorage.setItem('list', JSON.stringify(projects));
-  }
+  // remove todo from the storage (here or in todo)
+
+  // remove project
 };
 
 export { Storage as default };
 
-// retrieve todo list (maybe pass a particular category)
-
-
-// save todo to the storage
-// const saveTodo = () => {
-//   const title =
-//   const
-//   const id = Todo.incrementId;
-//   const todo = new Todo()
-
-//   const list = localStorage.getItem
-//   const getProject = list.find(where category of project is ==)
-//   getProject.list.push(todo)
-//   list.push(getProject)
-//   localStorage.setItem('', '')
-// }
-
-// remove todo from the storage
-
-// remove project
 
 // const todolist = [
 //   {
