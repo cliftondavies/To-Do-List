@@ -6,8 +6,13 @@ const Project = class {
 
   static categories = [];
 
-  addTodoToProject(todo) {
+  addTodo(todo) {
     return this.list.push(todo);
+  }
+
+  deleteTodo(todo) {
+    const index = this.list.indexOf(todo);
+    this.list.splice(index, 1);
   }
 
   // add to current list of categories (optional)
