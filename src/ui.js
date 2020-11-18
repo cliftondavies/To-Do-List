@@ -28,12 +28,11 @@ const UI = class {
     const projectInput = document.querySelector('#project-input').value;
     // const projectInput = 'shopping';
     // console.log(projectInput);
-    // const list = Storage.getList();
-    console.log(Storage.getList());
+    const list = Storage.getList();
     const project = new Project(projectInput);
-    console.log(project);
-    content().createProjectCard(project);
+    console.log(list);
     Storage.save(project);
+    content().createProjectCard(project);
   }
 
   // view todo form

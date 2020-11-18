@@ -2,21 +2,23 @@ import Project from './project';
 
 const Storage = class {
   static getList() {
-    if (JSON.parse(localStorage.getItem('list'))) {
-      JSON.parse(localStorage.getItem('list'));
-    } else {
+    const list = JSON.parse(localStorage.getItem('list'));
+    if (list == null) {
       const defaultProject = [new Project()];
       localStorage.setItem('list', JSON.stringify(defaultProject));
-      JSON.parse(localStorage.getItem('list'));
+      const defaultList = JSON.parse(localStorage.getItem('list'));
+      return defaultList;
+      // return list;
     }
+    return list;
   }
 
-  // // save project
-  // static saveProject(project) {
-  //   const projects = Storage.getList();
-  //   projects.push(project);
-  //   localStorage.setItem('list', JSON.stringify(projects));
-  // }
+  // save project
+  static saveProject(project) {
+    const projects = Storage.getList();
+    projects.push(project);
+    localStorage.setItem('list', JSON.stringify(projects));
+  }
 
   // static saveTodo(todo) {
   //   const projects = Storage.getList();
@@ -49,8 +51,8 @@ const Storage = class {
 
   }
 
-  static removeTodo(){
-    
+  static removeTodo() {
+
   }
   // remove todo from the storage (here or in todo)
 };
