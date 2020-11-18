@@ -9,8 +9,10 @@ const UI = class {
     const list = Storage.getList();
     list.forEach(project => {
       content().createProjectCard(project);
-      content().createListWrapper(project.projectName);
-      project.list.forEach(todo => content().collapsedTodoCard(todo));
+      if (project.list.length > 0) {
+        content().createListWrapper(project.projectName);
+        project.list.forEach(todo => content().collapsedTodoCard(todo));
+      }
     });
   }
 
@@ -24,14 +26,14 @@ const UI = class {
   // create new projects category
   static newCategory(event) {
     event.preventDefault();
-    // console.log('hello');
     const projectInput = document.querySelector('#project-input').value;
-    // const projectInput = 'shopping';
-    // console.log(projectInput);
-    const list = Storage.getList();
     const project = new Project(projectInput);
-    console.log(list);
+    const category = document.querySelector('#todo-category-input');
+
     Storage.save(project);
+    content().createOption(category);
+    // console.log(Project.addCategory(project));
+    console.log(Project.categories);
     content().createProjectCard(project);
   }
 

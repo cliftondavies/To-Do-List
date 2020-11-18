@@ -1,3 +1,5 @@
+import Project from './project';
+
 const content = () => {
   const container = document.getElementById('main');
   const wrapper = document.getElementById('wrapper');
@@ -25,14 +27,57 @@ const content = () => {
     projectForm.appendChild(projectButton);
   };
 
+
+  const createOption = (todoCategoryInput) => {
+    // const list = Storage.getList();
+    Project.categoriez.forEach(category => {
+      const option = document.createElement('option');
+      option.textContent = category;
+      // option.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+      option.setAttribute('value', category);
+      // option.setAttribute('value', c.toLowerCase());
+      todoCategoryInput.appendChild(option);
+    });
+  };
+  // const createOption = (todoCategoryInput) => {
+  //   const list = Storage.getList();
+  //   Project.getCategories(list).forEach(category => {
+  //     const option = document.createElement('option');
+  //     option.textContent = category;
+  //     // option.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+  //     option.setAttribute('value', category);
+  //     // option.setAttribute('value', c.toLowerCase());
+  //     todoCategoryInput.appendChild(option);
+  //   });
+  // };
+
   const todoForm = () => {
     const formWrapper = htmlTags('div', 'todo-form-wrapper', 'todo-form');
     const todoForm = htmlTags('form', 'todo-form', 'form');
     const todoTitleInput = htmlTags('input', 'todo-title-input', 'input');
+    todoTitleInput.setAttribute('placeholder', 'Title');
     const todoDescriptionInput = htmlTags('input', 'todo-description-input', 'input');
+    todoDescriptionInput.setAttribute('placeholder', 'describe your todo');
     const todoDueDateInput = htmlTags('input', 'todo-duedate-input', 'input');
-    const todoPriorityInput = htmlTags('input', 'todo-priority-input', 'input');
-    const todoCategoryInput = htmlTags('input', 'todo-category-input', 'input');
+    todoDueDateInput.setAttribute('placeholder', 'duedate');
+    todoDueDateInput.setAttribute('type', 'date');
+
+    const todoLowPriorityInput = htmlTags('input', 'todo-priority-input', 'input');
+    const todoLowPriorityLabel = htmlTags('label', 'todo-label', 'low-priority', 'low');
+    todoLowPriorityInput.setAttribute('type', 'radio');
+    todoLowPriorityInput.setAttribute('value', 'low');
+    todoLowPriorityInput.setAttribute('name', 'todo-priority');
+
+    const todoHighPriorityInput = htmlTags('input', 'todo-priority-input', 'input');
+    const todoHighPriorityLabel = htmlTags('label', 'todo-label', 'high-priority', 'high');
+    todoHighPriorityInput.setAttribute('type', 'radio');
+    todoHighPriorityInput.setAttribute('value', 'high');
+    todoHighPriorityInput.setAttribute('name', 'todo-priority');
+
+    const todoCategoryInput = htmlTags('select', 'todo-category-input', 'input');
+    createOption(todoCategoryInput);
+
+
     const todoButton = htmlTags('button', 'todo-button', 'button', 'create  todo');
 
     container.insertBefore(formWrapper, wrapper);
@@ -40,7 +85,10 @@ const content = () => {
     todoForm.appendChild(todoTitleInput);
     todoForm.appendChild(todoDescriptionInput);
     todoForm.appendChild(todoDueDateInput);
-    todoForm.appendChild(todoPriorityInput);
+    todoForm.appendChild(todoLowPriorityLabel);
+    todoForm.appendChild(todoLowPriorityInput);
+    todoForm.appendChild(todoHighPriorityLabel);
+    todoForm.appendChild(todoHighPriorityInput);
     todoForm.appendChild(todoCategoryInput);
     todoForm.appendChild(todoButton);
   };
@@ -125,6 +173,7 @@ const content = () => {
     collapsedTodoCard,
     expandedTodoCard,
     createListWrapper,
+    createOption,
   };
 };
 

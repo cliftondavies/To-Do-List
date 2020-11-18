@@ -4,7 +4,7 @@ const Todo = class {
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority; // implement dropdown with low or high priority
-    this.category = category; // implement dropdown with list of categories from projects class Project.categories
+    this.category = category;
     this.completed = 'Incomplete'; // implement dropdown with complete or incomplete
     this.id = generateID();
   }

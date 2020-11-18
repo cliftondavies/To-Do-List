@@ -8,17 +8,16 @@ const Storage = class {
       localStorage.setItem('list', JSON.stringify(defaultProject));
       const defaultList = JSON.parse(localStorage.getItem('list'));
       return defaultList;
-      // return list;
     }
     return list;
   }
 
   // save project
-  static saveProject(project) {
-    const projects = Storage.getList();
-    projects.push(project);
-    localStorage.setItem('list', JSON.stringify(projects));
-  }
+  // static saveProject(project) {
+  //   const projects = Storage.getList();
+  //   projects.push(project);
+  //   localStorage.setItem('list', JSON.stringify(projects));
+  // }
 
   // static saveTodo(todo) {
   //   const projects = Storage.getList();
@@ -34,6 +33,7 @@ const Storage = class {
 
     if (obj instanceof Project) {
       projects.push(obj);
+      Project.addCategory(obj);
     } else {
       const project = projects.find(project => project.projectName === obj.category);
       const index = projects.indexOf(project);
@@ -48,7 +48,6 @@ const Storage = class {
   static removeProject(projects, index) {
     projects.splice(index, 1);
     localStorage.setItem('list', JSON.stringify(projects));
-
   }
 
   static removeTodo() {

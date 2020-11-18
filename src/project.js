@@ -4,6 +4,14 @@ const Project = class {
     this.list = [];
   }
 
+  // static categoriez = [];
+
+  static getCategories(projects) {
+    const categories = [];
+    projects.forEach(p => categories.push(p.projectName));
+    return categories;
+  }
+
 
   addTodo(todo) {
     return this.list.push(todo);
@@ -15,10 +23,10 @@ const Project = class {
   }
 
   // add to current list of categories (optional)
-  static addCategory(project) {
-    Project.categories.push(project.projectName);
-  }
+  // static addCategory(project) {
+  //   Project.categories.push(project.projectName);
+  //   return Project.categories;
+  // }
 };
-Project.categories = [];
 
 export { Project as default };
