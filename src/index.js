@@ -5,8 +5,8 @@ import UI from './ui';
 content().mainPage();
 content().todoForm();
 content().projectForm();
-document.addEventListener('DOMContentLoaded', UI.render);
 
+document.addEventListener('DOMContentLoaded', UI.render);
 
 const projectFormBtn = document.querySelector('#createProjectBtn');
 const todoFormBtn = document.querySelector('#createTodoBtn');

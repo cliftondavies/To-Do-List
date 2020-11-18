@@ -27,29 +27,13 @@ const content = () => {
     projectForm.appendChild(projectButton);
   };
 
-
-  const createOption = (todoCategoryInput) => {
-    // const list = Storage.getList();
-    Project.categoriez.forEach(category => {
-      const option = document.createElement('option');
-      option.textContent = category;
-      // option.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-      option.setAttribute('value', category);
-      // option.setAttribute('value', c.toLowerCase());
-      todoCategoryInput.appendChild(option);
-    });
+  const createOption = (selectInput, projects, category = null) => {
+    if (category === null) { category = Project.getLastAddedCategory(projects); }
+    const option = document.createElement('option');
+    option.textContent = category;
+    option.setAttribute('value', category);
+    selectInput.appendChild(option);
   };
-  // const createOption = (todoCategoryInput) => {
-  //   const list = Storage.getList();
-  //   Project.getCategories(list).forEach(category => {
-  //     const option = document.createElement('option');
-  //     option.textContent = category;
-  //     // option.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-  //     option.setAttribute('value', category);
-  //     // option.setAttribute('value', c.toLowerCase());
-  //     todoCategoryInput.appendChild(option);
-  //   });
-  // };
 
   const todoForm = () => {
     const formWrapper = htmlTags('div', 'todo-form-wrapper', 'todo-form');
@@ -67,6 +51,7 @@ const content = () => {
     todoLowPriorityInput.setAttribute('type', 'radio');
     todoLowPriorityInput.setAttribute('value', 'low');
     todoLowPriorityInput.setAttribute('name', 'todo-priority');
+    todoLowPriorityInput.setAttribute('checked', true);
 
     const todoHighPriorityInput = htmlTags('input', 'todo-priority-input', 'input');
     const todoHighPriorityLabel = htmlTags('label', 'todo-label', 'high-priority', 'high');
@@ -75,8 +60,7 @@ const content = () => {
     todoHighPriorityInput.setAttribute('name', 'todo-priority');
 
     const todoCategoryInput = htmlTags('select', 'todo-category-input', 'input');
-    createOption(todoCategoryInput);
-
+    todoCategoryInput.setAttribute('name', 'category');
 
     const todoButton = htmlTags('button', 'todo-button', 'button', 'create  todo');
 

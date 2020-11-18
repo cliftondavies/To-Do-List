@@ -19,30 +19,29 @@ const Storage = class {
   //   localStorage.setItem('list', JSON.stringify(projects));
   // }
 
-  // static saveTodo(todo) {
-  //   const projects = Storage.getList();
-  //   const project = projects.find(project => project.projectName === todo.category);
-  //   project.list.push(todo);
-  //   const index = projects.indexOf(project);
-  //   projects[index] = project;
-  //   localStorage.setItem('list', JSON.stringify(projects));
-  // }
-
-  static save(obj) {
+  static saveTodo(todo) {
     const projects = Storage.getList();
-
-    if (obj instanceof Project) {
-      projects.push(obj);
-      Project.addCategory(obj);
-    } else {
-      const project = projects.find(project => project.projectName === obj.category);
-      const index = projects.indexOf(project);
-      project.addTodo(obj);
-      projects[index] = project;
-    }
-
+    const project = projects.find(project => project.projectName === todo.category);
+    const index = projects.indexOf(project);
+    project.list.push(todo);
+    projects[index] = project;
     localStorage.setItem('list', JSON.stringify(projects));
   }
+
+  // static save(obj) {
+  //   const projects = Storage.getList();
+
+  //   if (obj instanceof Project) {
+  //     projects.push(obj);
+  //   } else {
+  //     const project = projects.find(project => project.projectName === obj.category);
+  //     const index = projects.indexOf(project);
+  //     project.addTodo(obj);
+  //     projects[index] = project;
+  //   }
+
+  //   localStorage.setItem('list', JSON.stringify(projects));
+  // }
 
   // remove project
   static removeProject(projects, index) {
@@ -57,37 +56,3 @@ const Storage = class {
 };
 
 export { Storage as default };
-
-
-// const todolist = [
-//   {
-//     title: 'work',
-//     list_of_todos: [{
-//       title: 'todo-title1',
-//       description: 'todo description1',
-//       dueDate: 'todo due date',
-//       priority: 'todo-priority',
-//     },
-//     {
-//       title: 'todo-title2',
-//       description: 'todo description2',
-//       dueDate: 'todo due date',
-//       priority: 'todo-priority',
-//     }],
-//   },
-//   {
-//     title: 'shopping',
-//     list_of_todos: [{
-//       title: 'todo-title',
-//       description: 'todo description',
-//       dueDate: 'todo due date',
-//       priority: 'todo-priority',
-//     },
-//     {
-//       title: 'todo-title',
-//       description: 'todo description',
-//       dueDate: 'todo due date',
-//       priority: 'todo-priority',
-//     }],
-//   },
-// ];

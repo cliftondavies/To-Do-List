@@ -7,11 +7,22 @@ const UI = class {
   // render projects and todos by category // render default project with the whole list in storage
   static render() {
     const list = Storage.getList();
+    const categorySelect = document.querySelector('#todo-category-input');
+
+    Project.getAllCategories(list).forEach(c => {
+      content().createOption(categorySelect, list, c);
+    });
+
     list.forEach(project => {
       content().createProjectCard(project);
+
       if (project.list.length > 0) {
         content().createListWrapper(project.projectName);
-        project.list.forEach(todo => content().collapsedTodoCard(todo));
+
+        project.list.forEach(todo => {
+          content().collapsedTodoCard(todo);
+          content().expandedTodoCard(todo);
+        });
       }
     });
   }
@@ -23,20 +34,6 @@ const UI = class {
     projectForm.classList.toggle('show-project-form');
   }
 
-  // create new projects category
-  static newCategory(event) {
-    event.preventDefault();
-    const projectInput = document.querySelector('#project-input').value;
-    const project = new Project(projectInput);
-    const category = document.querySelector('#todo-category-input');
-
-    Storage.save(project);
-    content().createOption(category);
-    // console.log(Project.addCategory(project));
-    console.log(Project.categories);
-    content().createProjectCard(project);
-  }
-
   // view todo form
   static viewTodoForm() {
     const todoForm = document.querySelector('#todo-form-wrapper');
@@ -44,21 +41,39 @@ const UI = class {
     todoForm.classList.toggle('show-todo-form');
   }
 
+  // create new projects category
+  static newCategory(event) {
+    const projectInput = document.querySelector('#project-input').value;
+    const project = new Project(projectInput);
+    const categorySelect = document.querySelector('#todo-category-input');
+
+    Storage.save(project);
+    const projects = Storage.getList();
+    content().createOption(categorySelect, projects);
+    content().createProjectCard(project);
+    event.preventDefault();
+  }
+
   // create new todo
   static newTodo(event) {
-    const todoTitle = document.querySelector('todo-title-input').value;
-    const todoDescription = document.querySelector('todo-description-input').value;
-    const todoDueDate = document.querySelector('todo-date-input').value;
-    const todoPriority = document.querySelector('todo-priority-input').value;
-    const todoCategory = document.querySelector('todo-category-input').value;
+    const todoTitle = document.querySelector('#todo-title-input').value;
+    const todoDescription = document.querySelector('#todo-description-input').value;
+    const todoDueDate = document.querySelector('#todo-duedate-input').value;
+    // const todoPriority = document.querySelector('#todo-priority-input').value;
+    // const todoCategory = document.querySelector('#todo-category-input').value;
+
+    const todoPriority = document.querySelector('input[name="todo-priority"]:checked').value;
+    const todoCategory = document.querySelector('input[name="category"]:checked').value;
+    // console.log(event);
+
     const todo = new Todo(todoTitle,
       todoDescription,
       todoDueDate,
       todoPriority,
       todoCategory, Todo.incrementId);
 
+    Storage.saveTodo(todo);
     content().collapsedTodoCard(todo);
-    Storage.save(todo);
     event.preventDefault();
   }
 
@@ -83,14 +98,16 @@ const UI = class {
 
     if (target.textContent === 'Complete' || target.textContent === 'Incompleted') {
       todo.updateStatus();
+      project.list[todoIndex] = todo;
     } else if (target.textContent === 'Delete') {
       project.deleteTodo(todo);
     } else {
       todo.updatePriority();
+      project.list[todoIndex] = todo;
     }
 
     // project.addTodo(todo);
-    project.list[todoIndex] = todo;
+    // project.list[todoIndex] = todo; // no todoIndex if todo has been deleted from project list
     projects[index] = project;
     localStorage.setItem('list', JSON.stringify(projects));
   }
