@@ -32,8 +32,8 @@ const Storage = class {
     const projects = Storage.getList();
     const project = projects.find(project => project.projectName === todo.category);
     const index = projects.indexOf(project);
-    // project.list.push(todo);
-    project.addTodo(todo);
+    project.list.push(todo);
+    // project.addTodo(todo);
     projects[index] = project;
     localStorage.setItem('list', JSON.stringify(projects));
   }

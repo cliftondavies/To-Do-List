@@ -100,7 +100,7 @@ const content = () => {
     const projectCard = htmlTags('article', 'project-card');
     const projectHeading = htmlTags('h3', 'project-heading');
 
-    projectHeading.textContent = project.projectName;
+    projectHeading.textContent = project.projectName; // .charAt(0).toUpperCase() + project.projectName.slice(1);
     projectCard.appendChild(projectHeading);
     // add heading
     // add delete button
@@ -116,19 +116,23 @@ const content = () => {
     todoColumn.appendChild(wrapper);
   };
 
-  // create unexpanded todo card
+  // create collapsed todo card
   const collapsedTodoCard = (todo) => {
     const todoCard = htmlTags('article', '', 'collapsed-todo-card');
     const todoTitle = htmlTags('span', '', `${todo.title}`, todo.title);
     const todoDate = htmlTags('span', '', `${todo.dueDate}`, todo.dueDate);
 
     todoTitle.setAttribute('data-id', todo.id);
+    todoTitle.setAttribute('data-category', todo.category);
     todoDate.setAttribute('data-id', todo.id);
-    todoCard.setAttribute('data-category', todo.category);
+
+    // todoCard.setAttribute('data-id', todo.id);
+    // todoCard.setAttribute('data-category', todo.category);
     // add delete button
 
     todoCard.appendChild(todoTitle);
     todoCard.appendChild(todoDate);
+
     return todoCard;
   };
 
@@ -138,12 +142,16 @@ const content = () => {
     const todoTitle = htmlTags('h3', 'todo-title', `${todo.Title}`, todo.title);
     const todoDescription = htmlTags('h4', 'todo-description', `${todo.description}`, todo.description);
     const todoDate = htmlTags('span', 'todo-date', `${todo.dueDate}`, todo.dueDate);
-    const todoPriority = htmlTags('button', 'todo-priority', `${todo.priority}`, todo.priority);
-    const todoCompleted = htmlTags('button', 'todo-priority', `${todo.completed}`, todo.completed);
+    const todoPriority = htmlTags('button', 'todo-priority', 'todo-priority', todo.priority);
+    const todoCompleted = htmlTags('button', 'todo-status', 'todo-status', todo.completed);
     // add delete button
 
     todoTitle.setAttribute('data-id', todo.id);
-    todoCard.setAttribute('data-category', todo.category);
+    todoTitle.setAttribute('data-category', todo.category);
+
+    // todoCard.setAttribute('data-id', todo.id);
+    // todoCard.setAttribute('data-category', todo.category);
+
     todoCard.appendChild(todoTitle);
     todoCard.appendChild(todoDescription);
     todoCard.appendChild(todoDate);

@@ -33,17 +33,27 @@ body { background-color: rgb(224, 77, 32);}
   display: block;
 }
 
-
 .expanded-todo-card {
   border: 3px solid rgb(28, 17, 170);
-  display:none;
+  display: none;
+  /* z-index: 100; */
 }
 
-.show-todo-card {
-  display:block;
-}
+/* .expanded-todo-card span {
+  z-index: 1;
+} */
 
 .collapsed-todo-card {
   border: 3px solid rgb(0, 0, 0);
-  z-index : 1000;
+  /* z-index : 1000;
+  position: relative; */
+}
+
+/* .collapsed-todo-card span {
+  z-index: 1;
+  position: absolute;
+} */
+
+.show-todo-card {
+  display: block;
 }

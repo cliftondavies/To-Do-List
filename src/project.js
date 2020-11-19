@@ -1,6 +1,6 @@
 const Project = class {
   constructor(projectName = 'default') {
-    this.projectName = projectName;
+    this.projectName = projectName; // lowercase project name before setting property
     this.list = [];
   }
 
