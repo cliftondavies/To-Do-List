@@ -10,10 +10,21 @@ document.addEventListener('DOMContentLoaded', UI.render);
 
 const projectFormBtn = document.querySelector('#createProjectBtn');
 const todoFormBtn = document.querySelector('#createTodoBtn');
-const projectBtn = document.querySelector('#project-form');
-const todoBtn = document.querySelector('#todo-form');
+const projectForm = document.querySelector('#project-form');
+const todoForm = document.querySelector('#todo-form');
+const wrapper = document.querySelector('#project-column');
+const todoColumn = document.querySelector('.todo-column');
+
 
 projectFormBtn.addEventListener('click', UI.viewProjectForm);
 todoFormBtn.addEventListener('click', UI.viewTodoForm);
-projectBtn.addEventListener('submit', UI.newCategory);
-todoBtn.addEventListener('submit', UI.newTodo);
+projectForm.addEventListener('submit', UI.newCategory);
+todoForm.addEventListener('submit', UI.newTodo);
+wrapper.addEventListener('click', (e) => {
+  // console.log(e.target.textContent);
+  UI.showProjectList(e.target.textContent);
+});
+
+todoColumn.addEventListener('click', (e) => {
+  UI.expandTodo(e.target.dataset.id);
+});

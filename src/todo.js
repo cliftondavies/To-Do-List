@@ -1,19 +1,19 @@
 const Todo = class {
-  constructor(title, description, dueDate, priority, category, generateID) {
+  constructor(title, description, dueDate, priority, category) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority; // implement dropdown with low or high priority
     this.category = category;
     this.completed = 'Incomplete'; // implement dropdown with complete or incomplete
-    this.id = generateID();
+    this.id = Date.now();
   }
 
-  static numberOfTodos = 0 // to implement otherwise might be a problem when refreshed
+  // static numberOfTodos = 0 // to implement otherwise might be a problem when refreshed
 
-  static incrementId() {
-    return Todo.numberOfTodos + 1;
-  }
+  // static incrementId() {
+  //   return Todo.numberOfTodos;
+  // }
 
   // toggleCompleteStatus(){}
   updateStatus() {

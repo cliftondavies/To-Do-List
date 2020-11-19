@@ -13,11 +13,11 @@ const Storage = class {
   }
 
   // save project
-  // static saveProject(project) {
-  //   const projects = Storage.getList();
-  //   projects.push(project);
-  //   localStorage.setItem('list', JSON.stringify(projects));
-  // }
+  static saveProject(project) {
+    const projects = Storage.getList();
+    projects.push(project);
+    localStorage.setItem('list', JSON.stringify(projects));
+  }
 
   static saveTodo(todo) {
     const projects = Storage.getList();

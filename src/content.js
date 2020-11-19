@@ -109,7 +109,7 @@ const content = () => {
 
   // create todolist wrapper
   const createListWrapper = (id) => {
-    const wrapper = htmlTags('div', id, 'todo-wrapper-hidden', 'hidden');
+    const wrapper = htmlTags('div', id, 'todo-wrapper-hidden');
     const todoColumn = document.querySelector('.todo-column');
 
     todoColumn.appendChild(wrapper);
@@ -117,36 +117,47 @@ const content = () => {
 
   // create unexpanded todo card
   const collapsedTodoCard = (todo) => {
-    const todoColumn = document.querySelector('.todo-column');
-    const todoCard = htmlTags('article', 'collapsed-todo-card', '');
-    const todoTitle = htmlTags('span', 'todo-title', `${todo.Title}`);
-    const todoDate = htmlTags('span', 'todo-date', `${todo.dueDate}`);
-    // add delete button
+    // const todoColumn = document.querySelector('.todo-column');
+    const todoCard = htmlTags('article', '', 'collapsed-todo-card');
+    const todoTitle = htmlTags('span', '', `${todo.title}`, todo.title);
+    const todoDate = htmlTags('span', '', `${todo.dueDate}`, todo.dueDate);
+    todoTitle.setAttribute('data-id', todo.id);
+    todoDate.setAttribute('data-id', todo.id);
+    todoCard.setAttribute('data-category', todo.category);
 
+    // add delete button
+    // const wrapper = htmlTags('div', todo.category, 'todo-wrapper-hidden');
+    // const wrapper = document.querySelector(`#${todo.category}`);
+    // wrapper.appendChild(todoCard);
+    // console.log('hello');
     todoCard.appendChild(todoTitle);
     todoCard.appendChild(todoDate);
-    todoColumn.appendChild(todoCard);
+    // todoColumn.appendChild(todoCard);
+    return todoCard;
   };
 
   // create expanded todo card
   const expandedTodoCard = (todo) => {
-    const todoColumn = document.querySelector('.todo-column');
-    const todoCard = htmlTags('article', 'expanded-todo-card', '');
-    const todoTitle = htmlTags('h3', 'todo-title', `${todo.Title}`);
-    const todoDescription = htmlTags('h4', 'todo-description', `${todo.description}`);
-    const todoDate = htmlTags('span', 'todo-date', `${todo.dueDate}`);
-    const todoPriority = htmlTags('button', 'todo-priority', `${todo.priority}`);
-    const todoCompleted = htmlTags('button', 'todo-priority', `${todo.completed}`);
+    // const todoColumn = document.querySelector('.todo-column');
+    const todoCard = htmlTags('article', '', 'expanded-todo-card');
+    const todoTitle = htmlTags('h3', 'todo-title', `${todo.Title}`, todo.title);
+    const todoDescription = htmlTags('h4', 'todo-description', `${todo.description}`, todo.description);
+    const todoDate = htmlTags('span', 'todo-date', `${todo.dueDate}`, todo.dueDate);
+    const todoPriority = htmlTags('button', 'todo-priority', `${todo.priority}`, todo.priority);
+    const todoCompleted = htmlTags('button', 'todo-priority', `${todo.completed}`, todo.completed);
     // add delete button
+    // const wrapper = document.querySelector(`#${todo.category}`);
+    // wrapper.appendChild(todoCard);
 
-    todoCard.setAttribute('data-id', 'todo.id');
-    todoCard.setAttribute('data-category', 'todo.category');
+    todoTitle.setAttribute('data-id', todo.id);
+    todoCard.setAttribute('data-category', todo.category);
     todoCard.appendChild(todoTitle);
     todoCard.appendChild(todoDescription);
     todoCard.appendChild(todoDate);
     todoCard.appendChild(todoPriority);
     todoCard.appendChild(todoCompleted);
-    todoColumn.appendChild(todoCard);
+    // todoColumn.appendChild(todoCard);
+    return todoCard;
   };
 
   return {

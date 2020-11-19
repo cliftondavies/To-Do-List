@@ -18,10 +18,12 @@ const UI = class {
 
       if (project.list.length > 0) {
         content().createListWrapper(project.projectName);
+        const wrapper = document.querySelector(`#${project.projectName}`);
 
         project.list.forEach(todo => {
-          content().collapsedTodoCard(todo);
-          content().expandedTodoCard(todo);
+          // content().collapsedTodoCard(todo);
+          wrapper.appendChild(content().collapsedTodoCard(todo));
+          wrapper.appendChild(content().expandedTodoCard(todo));
         });
       }
     });
@@ -46,8 +48,8 @@ const UI = class {
     const projectInput = document.querySelector('#project-input').value;
     const project = new Project(projectInput);
     const categorySelect = document.querySelector('#todo-category-input');
-
-    Storage.save(project);
+    // console.log('hello');
+    Storage.saveProject(project);
     const projects = Storage.getList();
     content().createOption(categorySelect, projects);
     content().createProjectCard(project);
@@ -63,14 +65,14 @@ const UI = class {
     // const todoCategory = document.querySelector('#todo-category-input').value;
 
     const todoPriority = document.querySelector('input[name="todo-priority"]:checked').value;
-    const todoCategory = document.querySelector('input[name="category"]:checked').value;
-    // console.log(event);
+    const todoCategory = document.querySelector('#todo-category-input').value;
+    // console.log('hello');
 
     const todo = new Todo(todoTitle,
       todoDescription,
       todoDueDate,
       todoPriority,
-      todoCategory, Todo.incrementId);
+      todoCategory);
 
     Storage.saveTodo(todo);
     content().collapsedTodoCard(todo);
@@ -78,12 +80,20 @@ const UI = class {
   }
 
   // expand todo
-  static expandTodo() {
-    const collapsedTodoCard = document.querySelector('.collapsed-todo-card');
+  static expandTodo(dataID) {
+    const collapsedTodoCard = document.querySelector(`[data-id=${dataID}]`);
     const expandedTodoCard = document.querySelector('.expanded-todo-card');
 
-    collapsedTodoCard.classList.toggle('hide-todo-card');
-    expandedTodoCard.classList.toggle('show-todo-card');
+    collapsedTodoCard.classList.toggle('.hide-todo-card');
+    expandedTodoCard.classList.toggle('.show-todo-card');
+  }
+
+  static showProjectList(heading) {
+    const todosWrapper = document.querySelector(`#${heading}`);
+    // const column = document.querySelector('#todo-column');
+    // column.innerHTML = '';
+    // todosWrapper.classList.remove('.todo-wrapper-hidden');
+    todosWrapper.classList.toggle('show-todo-wrapper');
   }
 
   // edit todo: updat status and priority, and delete

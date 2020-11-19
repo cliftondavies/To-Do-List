@@ -25,12 +25,25 @@ body { background-color: rgb(224, 77, 32);}
   display: block;
 }
 
-/* 
-.show-todo-form
+.todo-wrapper-hidden {
+  display:none;
+}
 
-.hide-todo-card
+.show-todo-wrapper {
+  display: block;
+}
 
-.show-todo-card
 
+.expanded-todo-card {
+  border: 3px solid rgb(28, 17, 170);
+  display:none;
+}
 
-*/
+.show-todo-card {
+  display:block;
+}
+
+.collapsed-todo-card {
+  border: 3px solid rgb(0, 0, 0);
+  z-index : 1000;
+}
