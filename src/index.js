@@ -20,6 +20,7 @@ projectFormBtn.addEventListener('click', UI.viewProjectForm);
 todoFormBtn.addEventListener('click', UI.viewTodoForm);
 projectForm.addEventListener('submit', UI.newCategory);
 todoForm.addEventListener('submit', UI.newTodo);
+
 wrapper.addEventListener('click', (e) => {
   // console.log(e.target.textContent);
   UI.showProjectList(e.target.textContent);

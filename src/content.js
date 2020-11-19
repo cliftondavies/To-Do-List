@@ -4,7 +4,7 @@ const content = () => {
   const container = document.getElementById('main');
   const wrapper = document.getElementById('wrapper');
 
-  const htmlTags = (tag, id = undefined, klass, textContent) => {
+  const htmlTags = (tag, id = null, klass, textContent) => {
     const htmlElement = document.createElement(`${tag}`);
     if (id) {
       htmlElement.id = id;
@@ -99,6 +99,7 @@ const content = () => {
     const projectColumn = document.querySelector('.project-column');
     const projectCard = htmlTags('article', 'project-card');
     const projectHeading = htmlTags('h3', 'project-heading');
+
     projectHeading.textContent = project.projectName;
     projectCard.appendChild(projectHeading);
     // add heading
@@ -117,28 +118,22 @@ const content = () => {
 
   // create unexpanded todo card
   const collapsedTodoCard = (todo) => {
-    // const todoColumn = document.querySelector('.todo-column');
     const todoCard = htmlTags('article', '', 'collapsed-todo-card');
     const todoTitle = htmlTags('span', '', `${todo.title}`, todo.title);
     const todoDate = htmlTags('span', '', `${todo.dueDate}`, todo.dueDate);
+
     todoTitle.setAttribute('data-id', todo.id);
     todoDate.setAttribute('data-id', todo.id);
     todoCard.setAttribute('data-category', todo.category);
-
     // add delete button
-    // const wrapper = htmlTags('div', todo.category, 'todo-wrapper-hidden');
-    // const wrapper = document.querySelector(`#${todo.category}`);
-    // wrapper.appendChild(todoCard);
-    // console.log('hello');
+
     todoCard.appendChild(todoTitle);
     todoCard.appendChild(todoDate);
-    // todoColumn.appendChild(todoCard);
     return todoCard;
   };
 
   // create expanded todo card
   const expandedTodoCard = (todo) => {
-    // const todoColumn = document.querySelector('.todo-column');
     const todoCard = htmlTags('article', '', 'expanded-todo-card');
     const todoTitle = htmlTags('h3', 'todo-title', `${todo.Title}`, todo.title);
     const todoDescription = htmlTags('h4', 'todo-description', `${todo.description}`, todo.description);
@@ -146,8 +141,6 @@ const content = () => {
     const todoPriority = htmlTags('button', 'todo-priority', `${todo.priority}`, todo.priority);
     const todoCompleted = htmlTags('button', 'todo-priority', `${todo.completed}`, todo.completed);
     // add delete button
-    // const wrapper = document.querySelector(`#${todo.category}`);
-    // wrapper.appendChild(todoCard);
 
     todoTitle.setAttribute('data-id', todo.id);
     todoCard.setAttribute('data-category', todo.category);
@@ -156,7 +149,7 @@ const content = () => {
     todoCard.appendChild(todoDate);
     todoCard.appendChild(todoPriority);
     todoCard.appendChild(todoCompleted);
-    // todoColumn.appendChild(todoCard);
+
     return todoCard;
   };
 

@@ -21,7 +21,6 @@ const UI = class {
         const wrapper = document.querySelector(`#${project.projectName}`);
 
         project.list.forEach(todo => {
-          // content().collapsedTodoCard(todo);
           wrapper.appendChild(content().collapsedTodoCard(todo));
           wrapper.appendChild(content().expandedTodoCard(todo));
         });
@@ -48,7 +47,7 @@ const UI = class {
     const projectInput = document.querySelector('#project-input').value;
     const project = new Project(projectInput);
     const categorySelect = document.querySelector('#todo-category-input');
-    // console.log('hello');
+
     Storage.saveProject(project);
     const projects = Storage.getList();
     content().createOption(categorySelect, projects);
@@ -61,12 +60,8 @@ const UI = class {
     const todoTitle = document.querySelector('#todo-title-input').value;
     const todoDescription = document.querySelector('#todo-description-input').value;
     const todoDueDate = document.querySelector('#todo-duedate-input').value;
-    // const todoPriority = document.querySelector('#todo-priority-input').value;
-    // const todoCategory = document.querySelector('#todo-category-input').value;
-
     const todoPriority = document.querySelector('input[name="todo-priority"]:checked').value;
     const todoCategory = document.querySelector('#todo-category-input').value;
-    // console.log('hello');
 
     const todo = new Todo(todoTitle,
       todoDescription,
@@ -90,9 +85,6 @@ const UI = class {
 
   static showProjectList(heading) {
     const todosWrapper = document.querySelector(`#${heading}`);
-    // const column = document.querySelector('#todo-column');
-    // column.innerHTML = '';
-    // todosWrapper.classList.remove('.todo-wrapper-hidden');
     todosWrapper.classList.toggle('show-todo-wrapper');
   }
 
@@ -102,24 +94,26 @@ const UI = class {
     const todoID = target.parent.dataset.id;
     const todoCategory = target.parent.dataset.category;
     const project = projects.find(project => project.projectName === todoCategory);
-    const index = projects.indexOf(project);
+    const projectIndex = projects.indexOf(project);
     const todo = project.list.find(todo => todo.id === todoID);
     const todoIndex = project.list.indexOf(todo);
 
     if (target.textContent === 'Complete' || target.textContent === 'Incompleted') {
       todo.updateStatus();
-      project.list[todoIndex] = todo;
+      // project.list[todoIndex] = todo; // re-save modified todo to project list
     } else if (target.textContent === 'Delete') {
       project.deleteTodo(todo);
     } else {
       todo.updatePriority();
-      project.list[todoIndex] = todo;
+      // project.list[todoIndex] = todo; // re-save modified todo to project list
     }
 
-    // project.addTodo(todo);
-    // project.list[todoIndex] = todo; // no todoIndex if todo has been deleted from project list
-    projects[index] = project;
-    localStorage.setItem('list', JSON.stringify(projects));
+    // if (target.textContent !== 'Delete') { project.list[todoIndex] = todo; } // re-save todo
+    if (target.textContent !== 'Delete') { project.saveTodo(todo, todoIndex); } // re-save todo to project list
+
+    // projects[index] = project;
+    // localStorage.setItem('list', JSON.stringify(projects));
+    Storage.save(project, projectIndex); // re-save modified project to storage
   }
 
   // delete project

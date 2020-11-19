@@ -3,24 +3,18 @@ const Todo = class {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
-    this.priority = priority; // implement dropdown with low or high priority
+    this.priority = priority;
     this.category = category;
-    this.completed = 'Incomplete'; // implement dropdown with complete or incomplete
+    this.completed = 'Incomplete';
     this.id = Date.now();
   }
 
-  // static numberOfTodos = 0 // to implement otherwise might be a problem when refreshed
-
-  // static incrementId() {
-  //   return Todo.numberOfTodos;
-  // }
-
-  // toggleCompleteStatus(){}
+  // toggle completion Status
   updateStatus() {
     this.completed = (this.completed === 'Complete') ? 'Incomplete' : 'Complete';
   }
 
-  // changePriority(){}
+  // change todo priority
   updatePriority() {
     this.priority = (this.priority === 'Low') ? 'High' : 'Low';
   }
