@@ -27,14 +27,14 @@ wrapper.addEventListener('click', (e) => {
 });
 
 todoColumn.addEventListener('click', (e) => {
-  console.log(e.target);
+  // console.log(e.target);
   // console.log(e.currentTarget);
 
-  UI.expandTodo(e.target.dataset.id);
+  // UI.expandTodo(e.target.dataset.id);
 });
 
 todoColumn.addEventListener('click', (e) => {
-  // console.log(e.target.textContent);
-  // console.log(e.target.parentNode.dataset.category);
-  // console.log(e.target.previousSibling.previousSibling.previousSibling.dataset.id);
+  console.log(e.target.dataset.id);
+  console.log(e.target.dataset.category);
+  UI.editTodo(e.target);
 });

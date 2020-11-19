@@ -49,14 +49,14 @@ const content = () => {
     const todoLowPriorityInput = htmlTags('input', 'todo-priority-input', 'input');
     const todoLowPriorityLabel = htmlTags('label', 'todo-label', 'low-priority', 'low');
     todoLowPriorityInput.setAttribute('type', 'radio');
-    todoLowPriorityInput.setAttribute('value', 'low');
+    todoLowPriorityInput.setAttribute('value', 'Low');
     todoLowPriorityInput.setAttribute('name', 'todo-priority');
     todoLowPriorityInput.setAttribute('checked', true);
 
     const todoHighPriorityInput = htmlTags('input', 'todo-priority-input', 'input');
     const todoHighPriorityLabel = htmlTags('label', 'todo-label', 'high-priority', 'high');
     todoHighPriorityInput.setAttribute('type', 'radio');
-    todoHighPriorityInput.setAttribute('value', 'high');
+    todoHighPriorityInput.setAttribute('value', 'High');
     todoHighPriorityInput.setAttribute('name', 'todo-priority');
 
     const todoCategoryInput = htmlTags('select', 'todo-category-input', 'input');
@@ -148,6 +148,12 @@ const content = () => {
 
     todoTitle.setAttribute('data-id', todo.id);
     todoTitle.setAttribute('data-category', todo.category);
+
+    todoPriority.setAttribute('data-id', todo.id);
+    todoPriority.setAttribute('data-category', todo.category);
+
+    todoCompleted.setAttribute('data-id', todo.id);
+    todoCompleted.setAttribute('data-category', todo.category);
 
     // todoCard.setAttribute('data-id', todo.id);
     // todoCard.setAttribute('data-category', todo.category);

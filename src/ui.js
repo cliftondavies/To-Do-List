@@ -81,33 +81,51 @@ const UI = class {
   }
 
   // expand todo
-  static expandTodo(dataID) {
-    const collapsedTodoCard = document.querySelector(`span[data-id="${dataID}"]`);
+  // static expandTodo(dataID) {
+  //   const collapsedTodoCard = document.querySelector(`span[data-id="${dataID}"]`);
 
-    collapsedTodoCard.parentNode.classList.toggle('expanded-todo-card');
-    collapsedTodoCard.parentNode.nextSibling.classList.toggle('show-todo-card');
-  }
+  //   collapsedTodoCard.parentNode.classList.toggle('expanded-todo-card');
+  //   collapsedTodoCard.parentNode.nextSibling.classList.toggle('show-todo-card');
+  // }
 
   // edit todo: updat status and priority, and delete
   static editTodo(target) {
     const projects = Storage.getList();
-    const todoID = target.parent.dataset.id;
-    const todoCategory = target.parent.dataset.category;
+    const todoID = target.dataset.id;
+    const todoCategory = target.dataset.category;
+
     const project = projects.find(project => project.projectName === todoCategory);
     const projectIndex = projects.indexOf(project);
-    const todo = project.list.find(todo => todo.id === todoID);
-    const todoIndex = project.list.indexOf(todo);
+    console.log(project);
 
-    if (target.textContent === 'Complete' || target.textContent === 'Incompleted') {
+    const todo = project.list.find(todo => todo.id == todoID);
+    console.log(todo);
+    const todoIndex = project.list.indexOf(todo);
+    console.log(todoIndex);
+
+    // if (target.textContent === 'Complete' || target.textContent === 'Incomplete') {
+    //   todo.updateStatus();
+    //   project.list[todoIndex] = todo; // re-save modified todo to project list
+    // } else if (target.textContent === 'Delete') {
+    //   project.deleteTodo(todo);
+    // } else if (target.textContent === 'High' || target.textContent === 'Low') {
+    //   todo.updatePriority();
+    //   project.list[todoIndex] = todo; // re-save modified todo to project list
+    // }
+
+    if (target.textContent === 'Complete' || target.textContent === 'Incomplete') {
       todo.updateStatus();
-      project.list[todoIndex] = todo; // re-save modified todo to project list
-    } else if (target.textContent === 'Delete') {
+      project.list[todoIndex] = todo;
+    }
+
+    if (target.textContent === 'Delete') {
       project.deleteTodo(todo);
-    } else {
+    }
+
+    if (target.textContent === 'High' || target.textContent === 'Low') {
       todo.updatePriority();
       project.list[todoIndex] = todo; // re-save modified todo to project list
     }
-
     // if (target.textContent !== 'Delete') { project.list[todoIndex] = todo; } // re-save todo
     // if (target.textContent !== 'Delete') { project.saveTodo(todo, todoIndex); } // re-save todo to project list
 
