@@ -6,18 +6,18 @@ const Todo = class {
     this.priority = priority;
     this.category = category;
     this.completed = 'Incomplete';
-    this.id = Date.now();
+    this.id = Date.now().toString();
   }
 
   // toggle completion Status
-  updateStatus() {
-    this.completed = (this.completed === 'Complete') ? 'Incomplete' : 'Complete';
-  }
+  // updateStatus() {
+  //   this.completed = (this.completed === 'Incomplete') ? 'Complete' : 'Incomplete';
+  // }
 
   // change todo priority
-  updatePriority() {
-    this.priority = (this.priority === 'Low') ? 'High' : 'Low';
-  }
+  // updatePriority() {
+  //   this.priority = (this.priority === 'Low') ? 'High' : 'Low';
+  // }
 };
 
 export { Todo as default };
