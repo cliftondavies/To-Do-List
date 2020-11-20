@@ -8,16 +8,6 @@ const Todo = class {
     this.completed = 'Incomplete';
     this.id = Date.now().toString();
   }
-
-  // toggle completion Status
-  // updateStatus() {
-  //   this.completed = (this.completed === 'Incomplete') ? 'Complete' : 'Incomplete';
-  // }
-
-  // change todo priority
-  // updatePriority() {
-  //   this.priority = (this.priority === 'Low') ? 'High' : 'Low';
-  // }
 };
 
 export { Todo as default };

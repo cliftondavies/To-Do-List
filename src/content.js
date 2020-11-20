@@ -100,7 +100,8 @@ const content = () => {
     const projectCard = htmlTags('article', 'project-card');
     const projectHeading = htmlTags('h3', 'project-heading');
 
-    projectHeading.textContent = project.projectName; // .charAt(0).toUpperCase() + project.projectName.slice(1);
+    // .charAt(0).toUpperCase() + project.projectName.slice(1); (to capitalise 1st heading letter)
+    projectHeading.textContent = project.projectName;
     projectCard.appendChild(projectHeading);
     // add delete button
 
@@ -147,6 +148,12 @@ const content = () => {
 
     todoTitle.setAttribute('data-id', todo.id);
     todoTitle.setAttribute('data-category', todo.category);
+
+    todoDescription.setAttribute('data-id', todo.id);
+    todoDescription.setAttribute('data-category', todo.category);
+
+    todoDate.setAttribute('data-id', todo.id);
+    todoDate.setAttribute('data-category', todo.category);
 
     todoPriority.setAttribute('data-id', todo.id);
     todoPriority.setAttribute('data-category', todo.category);

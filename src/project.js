@@ -18,15 +18,6 @@ const Project = class {
     return this.list.push(todo);
   }
 
-  // save (add/update) todo item to a project's list
-  // saveTodo(todo, index = null) {
-  //   if (index) {
-  //     this.list[index] = todo;
-  //   } else {
-  //     this.list.push(todo);
-  //   }
-  // }
-
   deleteTodo(todo) {
     const index = this.list.indexOf(todo);
     this.list.splice(index, 1);
