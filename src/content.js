@@ -47,14 +47,14 @@ const content = () => {
     todoDueDateInput.setAttribute('type', 'date');
 
     const todoLowPriorityInput = htmlTags('input', 'todo-priority-input', 'input');
-    const todoLowPriorityLabel = htmlTags('label', 'todo-label', 'low-priority', 'low');
+    const todoLowPriorityLabel = htmlTags('label', 'todo-label', 'low-priority', 'Low');
     todoLowPriorityInput.setAttribute('type', 'radio');
     todoLowPriorityInput.setAttribute('value', 'Low');
     todoLowPriorityInput.setAttribute('name', 'todo-priority');
     todoLowPriorityInput.setAttribute('checked', true);
 
     const todoHighPriorityInput = htmlTags('input', 'todo-priority-input', 'input');
-    const todoHighPriorityLabel = htmlTags('label', 'todo-label', 'high-priority', 'high');
+    const todoHighPriorityLabel = htmlTags('label', 'todo-label', 'high-priority', 'High');
     todoHighPriorityInput.setAttribute('type', 'radio');
     todoHighPriorityInput.setAttribute('value', 'High');
     todoHighPriorityInput.setAttribute('name', 'todo-priority');
@@ -144,6 +144,7 @@ const content = () => {
     const todoDate = htmlTags('span', 'todo-date', `${todo.dueDate}`, todo.dueDate);
     const todoPriority = htmlTags('button', 'todo-priority', 'todo-priority', todo.priority);
     const todoCompleted = htmlTags('button', 'todo-status', 'todo-status', todo.completed);
+    const deleteTodo = htmlTags('button', 'todo-delete', 'delete', 'Delete');
     // add delete button
 
     todoTitle.setAttribute('data-id', todo.id);
@@ -155,14 +156,15 @@ const content = () => {
     todoCompleted.setAttribute('data-id', todo.id);
     todoCompleted.setAttribute('data-category', todo.category);
 
-    // todoCard.setAttribute('data-id', todo.id);
-    // todoCard.setAttribute('data-category', todo.category);
+    deleteTodo.setAttribute('data-category', todo.category);
+    deleteTodo.setAttribute('data-id', todo.id);
 
     todoCard.appendChild(todoTitle);
     todoCard.appendChild(todoDescription);
     todoCard.appendChild(todoDate);
     todoCard.appendChild(todoPriority);
     todoCard.appendChild(todoCompleted);
+    todoCard.appendChild(deleteTodo);
 
     return todoCard;
   };
