@@ -17,8 +17,9 @@ const UI = class {
       content().createProjectCard(project);
 
       if (project.list.length > 0) {
-        content().createListWrapper(project.projectName); // project.projectName.split(' ').join('-')
-        const wrapper = document.querySelector(`#${project.projectName}`); // project.projectName.split(' ').join('-')
+        const formattedProject = project.projectName.split(' ').join('-');
+        content().createListWrapper(formattedProject);
+        const wrapper = document.querySelector(`#${formattedProject}`);
 
         project.list.forEach(todo => {
           wrapper.appendChild(content().collapsedTodoCard(todo));
@@ -76,58 +77,66 @@ const UI = class {
 
   // show list of todos within a given project
   static showProjectList(heading) {
+    heading = heading.toLowerCase().split(' ').join('-');
     const todosWrapper = document.querySelector(`#${heading}`); // heading.toLowerCase().split(' ').join('-');
     todosWrapper.classList.toggle('show-todo-wrapper');
   }
 
   // expand todo
-  // static expandTodo(dataID) {
-  //   const collapsedTodoCard = document.querySelector(`span[data-id="${dataID}"]`);
+  static expandTodo(dataID) {
+    const collapsedTodoCard = document.querySelector(`span[data-id="${dataID}"]`);
 
-  //   collapsedTodoCard.parentNode.classList.toggle('expanded-todo-card');
-  //   collapsedTodoCard.parentNode.nextSibling.classList.toggle('show-todo-card');
-  // }
+    collapsedTodoCard.parentNode.classList.toggle('expanded-todo-card');
+    collapsedTodoCard.parentNode.nextSibling.classList.toggle('show-todo-card');
+  }
 
   // edit todo: updat status and priority, and delete
   static editTodo(target) {
     const projects = Storage.getList();
     const todoID = target.dataset.id;
     const todoCategory = target.dataset.category;
+    // console.log(todoID);
+    // console.log(todoCategory);
 
     const project = projects.find(project => project.projectName === todoCategory);
     const projectIndex = projects.indexOf(project);
-    console.log(project);
-
-    const todo = project.list.find(todo => todo.id == todoID);
-    console.log(todo);
+    // console.log(project);
+    // project.prototype = Object.create(Project.prototype);
+    // project.prototype.constructor = Project;
+    const todo = project.list.find(todo => todo.id === todoID);
+    // todo.prototype = Object.create(Todo.prototype);
+    // todo.prototype.constructor = Todo;
+    // console.log(todo);
     const todoIndex = project.list.indexOf(todo);
-    console.log(todoIndex);
+    // console.log(todoIndex);
 
-    // if (target.textContent === 'Complete' || target.textContent === 'Incomplete') {
-    //   todo.updateStatus();
-    //   project.list[todoIndex] = todo; // re-save modified todo to project list
-    // } else if (target.textContent === 'Delete') {
-    //   project.deleteTodo(todo);
-    // } else if (target.textContent === 'High' || target.textContent === 'Low') {
-    //   todo.updatePriority();
-    //   project.list[todoIndex] = todo; // re-save modified todo to project list
-    // }
-
-    if (target.textContent === 'Complete' || target.textContent === 'Incomplete') {
-      todo.updateStatus();
-      project.list[todoIndex] = todo;
-    }
-
-    if (target.textContent === 'Delete') {
-      project.deleteTodo(todo);
-    }
-
-    if (target.textContent === 'High' || target.textContent === 'Low') {
-      todo.updatePriority();
+    if (target.textContent === 'Complete') {
+      target.textContent = 'Incomplete';
+      todo.completed = 'Incomplete';
       project.list[todoIndex] = todo; // re-save modified todo to project list
+    } else if (target.textContent === 'Incomplete') {
+      target.textContent = 'Complete';
+      todo.completed = 'Complete';
+      project.list[todoIndex] = todo; // re-save modified todo to project list
+
+    } else if (target.textContent === 'High') {
+      target.textContent = 'Low';
+      todo.priority = 'Low';
+      project.list[todoIndex] = todo; // re-save modified todo to project list
+
+    } else if (target.textContent === 'Low') {
+      target.textContent = 'High';
+      todo.priority = 'High';
+      project.list[todoIndex] = todo; // re-save modified todo to project list
+    } else if (target.textContent === 'Delete') {
+      // project.deleteTodo(todo);
+      // const index = project.list.indexOf(todo);
+      console.log(todo);
+      console.log(todoIndex);
+
+      project.list.splice(todoIndex, 1);
+      target.parentNode.remove();
     }
-    // if (target.textContent !== 'Delete') { project.list[todoIndex] = todo; } // re-save todo
-    // if (target.textContent !== 'Delete') { project.saveTodo(todo, todoIndex); } // re-save todo to project list
 
     projects[projectIndex] = project;
     localStorage.setItem('list', JSON.stringify(projects));
