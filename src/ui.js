@@ -135,6 +135,9 @@ const UI = class {
       console.log(todoIndex);
 
       project.list.splice(todoIndex, 1);
+      // const collapsedTodoCard = document.querySelector(`span[data-id="${dataID}"]`);
+
+      target.parentNode.previousSibling.remove();
       target.parentNode.remove();
     }
 

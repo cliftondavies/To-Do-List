@@ -102,7 +102,6 @@ const content = () => {
 
     projectHeading.textContent = project.projectName; // .charAt(0).toUpperCase() + project.projectName.slice(1);
     projectCard.appendChild(projectHeading);
-    // add heading
     // add delete button
 
     projectColumn.appendChild(projectCard);
@@ -145,7 +144,6 @@ const content = () => {
     const todoPriority = htmlTags('button', 'todo-priority', 'todo-priority', todo.priority);
     const todoCompleted = htmlTags('button', 'todo-status', 'todo-status', todo.completed);
     const deleteTodo = htmlTags('button', 'todo-delete', 'delete', 'Delete');
-    // add delete button
 
     todoTitle.setAttribute('data-id', todo.id);
     todoTitle.setAttribute('data-category', todo.category);
@@ -158,6 +156,9 @@ const content = () => {
 
     deleteTodo.setAttribute('data-category', todo.category);
     deleteTodo.setAttribute('data-id', todo.id);
+
+    todoCard.setAttribute('data-id', todo.id);
+    todoCard.setAttribute('data-category', todo.category);
 
     todoCard.appendChild(todoTitle);
     todoCard.appendChild(todoDescription);
