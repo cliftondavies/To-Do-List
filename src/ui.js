@@ -41,16 +41,20 @@ const UI = class {
 
   static newCategory(event) {
     const projectInput = document.querySelector('#project-input').value;
-    const project = new Project(projectInput);
-    const categorySelect = document.querySelector('#todo-category-input');
+    if (!projectInput) {
+      alert('Project need a name.');
+    } else {
+      const project = new Project(projectInput);
+      const categorySelect = document.querySelector('#todo-category-input');
 
-    Storage.saveProject(project);
-    const projects = Storage.getList();
-    content().createOption(categorySelect, projects);
-    content().createProjectCard(project);
+      Storage.saveProject(project);
+      const projects = Storage.getList();
+      content().createOption(categorySelect, projects);
+      content().createProjectCard(project);
 
-    const formattedProject = project.projectName.split(' ').join('-');
-    content().createListWrapper(formattedProject);
+      const formattedProject = project.projectName.split(' ').join('-');
+      content().createListWrapper(formattedProject);
+    }
     event.preventDefault();
   }
 
@@ -60,19 +64,21 @@ const UI = class {
     const todoDueDate = document.querySelector('#todo-duedate-input').value;
     const todoPriority = document.querySelector('input[name="todo-priority"]:checked').value;
     const todoCategory = document.querySelector('#todo-category-input').value;
-
-    const todo = new Todo(todoTitle,
-      todoDescription,
-      todoDueDate,
-      todoPriority,
-      todoCategory);
-
-    Storage.saveTodo(todo);
-    const formattedProject = todoCategory.toLowerCase().split(' ').join('-');
-    const wrapper = document.querySelector(`#${formattedProject}`);
-    wrapper.appendChild(content().collapsedTodoCard(todo));
-    wrapper.appendChild(content().expandedTodoCard(todo));
-    wrapper.classList.toggle('show-todo-wrapper');
+    if (!todoTitle) {
+      alert('Todo need at least Title');
+    } else {
+      const todo = new Todo(todoTitle,
+        todoDescription,
+        todoDueDate,
+        todoPriority,
+        todoCategory);
+      Storage.saveTodo(todo);
+      const formattedProject = todoCategory.toLowerCase().split(' ').join('-');
+      const wrapper = document.querySelector(`#${formattedProject}`);
+      wrapper.appendChild(content().collapsedTodoCard(todo));
+      wrapper.appendChild(content().expandedTodoCard(todo));
+      wrapper.classList.toggle('show-todo-wrapper');
+    }
     event.preventDefault();
   }
 
