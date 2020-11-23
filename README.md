@@ -1,57 +1,98 @@
-# To-Do-List
+# Todo App
+A small todo list app.
 
 
-// alert('everything is working');
+<br />
+<p align="center">
+  <a href="https://github.com/cliftondavies/To-Do-List">
+    <img src="src/assets/microverse-logo.webp" alt="Logo" width="100" height="100">
+  </a>
 
-/// todo class // title description dueDate priority 
+  <p align="center">
+    <br />
+    <a href="https://github.com/cliftondavies/To-Do-List"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/cliftondavies/To-Do-List/issues">Report Bug</a>
+    <a href="https://github.com/cliftondavies/To-Do-List/issues">Request Feature</a>
+  </p>
+</p>
 
 
-// default work school home // list of todos user cshould be able to create new list of todos
+## Table of Contents
 
-// view all projects
+* [About the Project](#about-the-project)
+  * [Built With](#built-with)
+  * [Usage](#usage)
+* [Author](#author)
+* [Contributing](#contributing)
+* [Acknowledgements](#acknowledgements)
 
-//view all todos for projects (title and dueDate)
+## About The Project
 
-todolist = [ {
-  {
-title :'work',
-list_of_todos: [{
-title :'todo-title',
-description: 'todo description',
-dueDate: 'todo due date',
-priority:'todo-priority'
-},
-{
-title :'todo-title',
-description: 'todo description',
-dueDate: 'todo due date',
-priority:'todo-priority'
-}],
-}
-},
+The objective of this project is to build an application to store project and related todo items.
 
-{{
-title :'shopping',
-list_of_todos: [{
-title :'todo-title',
-description: 'todo description',
-dueDate: 'todo due date',
-priority:'todo-priority'
-},
-{
-title :'todo-title',
-description: 'todo description',
-dueDate: 'todo due date',
-priority:'todo-priority'
-}],
-}
-}, {shopping}]
-// expand a single todo to see/edit its details
-
-//use localStorage 
-//checkout for date-fns
+ * Add Projects
+ * Add Todo items
+ * View Todo list by Project category
+ * Expand/Collpase Todo Cards
+ * Edit todo's priority/status
+ * Delete Todo
+ * Store and retrieve from localStorage
 
 
 
+### Built With
+This project was built using these technologies.
+* Javascript ES6
+* Webapck
+* localStorage API
+* EsLint
+* VsCode
 
 
+
+## Live version 
+  [Click here](https://rawcdn.githack.com/cliftondavies/To-Do-List/adfc807eff14a8a8e78c6653ff1d30da2b58c235/index.html)
+
+### Usage
+
+1. Click the add project button to add projects;
+2. Click the add todo button to add todo to a project;
+3. Click the card to get an expanded view of the todo;
+4. Toggle the complete/uncomplete status;
+5. Toggle the priority;
+6. Delete the todos; 
+
+
+
+## Author
+
+
+👤 **Clifton Davies** 
+- Twitter: [@cliftonaedavies](https://twitter.com/cliftonaedavies) 
+- Github: [@cliftondavies](https://github.com/cliftondavies) 
+- LinkedIn [@Clifton Davies](https://www.linkedin.com/in/clifton-davies-mbcs)
+
+
+
+👤 **Illuminato Salvatore** 
+- Twitter: [@ioilmio](https://twitter.com/ioilmio) 
+- Github: [@ioilmio](https://github.com/ioilmio) 
+- LinkedIn [@IlluminatoSalvatore](https://www.linkedin.com/in/illuminato-salvatore/)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+Feel free to check the [issues page](https://github.com/cliftondavies/To-Do-List/issues).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+
+## Acknowledgements
+* [Microverse](https://www.microverse.org/)
+* [The Odin Project](https://www.theodinproject.com/)
+* [Webpack](https://webpack.js.org/)

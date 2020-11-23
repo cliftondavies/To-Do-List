@@ -4,7 +4,6 @@ import Project from './project';
 import Todo from './todo';
 
 const UI = class {
-  // render projects and todos by category. render default project with the whole list in storage
   static render() {
     const projects = Storage.getList();
     const categorySelect = document.querySelector('#todo-category-input');
@@ -15,12 +14,11 @@ const UI = class {
 
     projects.forEach(project => {
       content().createProjectCard(project);
+      const formattedProject = project.projectName.split(' ').join('-');
+      content().createListWrapper(formattedProject);
+      const wrapper = document.querySelector(`#${formattedProject}`);
 
       if (project.list.length > 0) {
-        const formattedProject = project.projectName.split(' ').join('-');
-        content().createListWrapper(formattedProject);
-        const wrapper = document.querySelector(`#${formattedProject}`);
-
         project.list.forEach(todo => {
           wrapper.appendChild(content().collapsedTodoCard(todo));
           wrapper.appendChild(content().expandedTodoCard(todo));
@@ -29,21 +27,18 @@ const UI = class {
     });
   }
 
-  // view project form
   static viewProjectForm() {
     const projectForm = document.querySelector('#project-form-wrapper');
 
     projectForm.classList.toggle('show-project-form');
   }
 
-  // view todo form
   static viewTodoForm() {
     const todoForm = document.querySelector('#todo-form-wrapper');
 
     todoForm.classList.toggle('show-todo-form');
   }
 
-  // create new projects category
   static newCategory(event) {
     const projectInput = document.querySelector('#project-input').value;
     const project = new Project(projectInput);
@@ -53,10 +48,12 @@ const UI = class {
     const projects = Storage.getList();
     content().createOption(categorySelect, projects);
     content().createProjectCard(project);
+
+    const formattedProject = project.projectName.split(' ').join('-');
+    content().createListWrapper(formattedProject);
     event.preventDefault();
   }
 
-  // create new todo
   static newTodo(event) {
     const todoTitle = document.querySelector('#todo-title-input').value;
     const todoDescription = document.querySelector('#todo-description-input').value;
@@ -71,9 +68,7 @@ const UI = class {
       todoCategory);
 
     Storage.saveTodo(todo);
-    // Todo: Display Todo on Creation, not page reload.
-    // content().collapsedTodoCard(todo);
-    const formattedProject = todo.todoCategory.toLowerCase().split(' ').join('-');
+    const formattedProject = todoCategory.toLowerCase().split(' ').join('-');
     const wrapper = document.querySelector(`#${formattedProject}`);
     wrapper.appendChild(content().collapsedTodoCard(todo));
     wrapper.appendChild(content().expandedTodoCard(todo));
@@ -81,7 +76,6 @@ const UI = class {
     event.preventDefault();
   }
 
-  // show list of todos within a given project
   static showProjectList(heading) {
     heading = heading.toLowerCase().split(' ').join('-');
     const todosWrapper = document.querySelector(`#${heading}`);
@@ -91,7 +85,6 @@ const UI = class {
     if (todosWrapper) { todosWrapper.classList.toggle('show-todo-wrapper'); }
   }
 
-  // expand todo
   static expandTodo(dataID) {
     const collapsedTodoCard = document.querySelector(`span[data-id="${dataID}"]`);
 
@@ -101,7 +94,6 @@ const UI = class {
     }
   }
 
-  // edit todo: updat status and priority, and delete
   static editTodo(target) {
     const projects = Storage.getList();
     const todoID = target.dataset.id;
@@ -137,7 +129,6 @@ const UI = class {
     localStorage.setItem('list', JSON.stringify(projects));
   }
 
-  // delete project
   static deleteProject() {
     const projects = Storage.getList();
     const projectCategory = document.querySelector('.project-heading').textContent;
