@@ -39,6 +39,28 @@ const UI = class {
     todoForm.classList.toggle('show-todo-form');
   }
 
+  static clearProjectFields() {
+    const projectInput = document.querySelector('#project-input').value;
+    projectInput.value = '';
+    projectInput.classList.toggle('show-project-form');
+  }
+
+  static clearTodoFields() {
+    const todoTitle = document.querySelector('#todo-title-input').value;
+    todoTitle.value = '';
+    const todoDescription = document.querySelector('#todo-description-input').value;
+    todoDescription.value = '';
+    const todoDueDate = document.querySelector('#todo-duedate-input').value;
+    todoDueDate.value = '';
+    const todoPriority = document.querySelector('input[name="todo-priority"]:checked').value;
+    todoPriority.value = '';
+    const todoCategory = document.querySelector('#todo-category-input').value;
+    todoCategory.value = '';
+    const todoForm = document.querySelector('#todo-form-wrapper');
+
+    todoForm.classList.toggle('show-todo-form');
+  }
+
   static newCategory(event) {
     const projectInput = document.querySelector('#project-input').value;
     if (!projectInput) {
@@ -55,6 +77,7 @@ const UI = class {
       const formattedProject = project.projectName.split(' ').join('-');
       content().createListWrapper(formattedProject);
     }
+    UI.clearProjectFields();
     event.preventDefault();
   }
 
@@ -79,6 +102,7 @@ const UI = class {
       wrapper.appendChild(content().expandedTodoCard(todo));
       wrapper.classList.toggle('show-todo-wrapper');
     }
+    UI.clearTodoFields();
     event.preventDefault();
   }
 
@@ -112,10 +136,14 @@ const UI = class {
     if (target.textContent === 'Complete') {
       target.textContent = 'Incomplete';
       todo.completed = 'Incomplete';
+      target.parentNode.firstChild.classList.toggle('completed');
+      target.parentNode.firstChild.nextSibling.classList.toggle('completed');
       project.list[todoIndex] = todo;
     } else if (target.textContent === 'Incomplete') {
       target.textContent = 'Complete';
       todo.completed = 'Complete';
+      target.parentNode.firstChild.classList.toggle('completed');
+      target.parentNode.firstChild.nextSibling.classList.toggle('completed');
       project.list[todoIndex] = todo;
     } else if (target.textContent === 'High') {
       target.textContent = 'Low';

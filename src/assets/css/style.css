@@ -45,3 +45,7 @@ body { background-color: rgb(224, 77, 32); }
 .show-todo-card {
   display: block;
 }
+.completed {
+  text-decoration: line-through;
+  /* color: white; */
+}
