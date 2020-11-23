@@ -22,6 +22,10 @@ const UI = class {
         project.list.forEach(todo => {
           wrapper.appendChild(content().collapsedTodoCard(todo));
           wrapper.appendChild(content().expandedTodoCard(todo));
+          if (project.projectName === 'default') {
+            const defaultWrapper = document.querySelector('#default');
+            defaultWrapper.classList.toggle('show-todo-wrapper');
+          }
         });
       }
     });
@@ -39,45 +43,18 @@ const UI = class {
     todoForm.classList.toggle('show-todo-form');
   }
 
-  static clearProjectFields() {
-    const projectInput = document.querySelector('#project-input').value;
-    projectInput.value = '';
-    projectInput.classList.toggle('show-project-form');
-  }
-
-  static clearTodoFields() {
-    const todoTitle = document.querySelector('#todo-title-input').value;
-    todoTitle.value = '';
-    const todoDescription = document.querySelector('#todo-description-input').value;
-    todoDescription.value = '';
-    const todoDueDate = document.querySelector('#todo-duedate-input').value;
-    todoDueDate.value = '';
-    const todoPriority = document.querySelector('input[name="todo-priority"]:checked').value;
-    todoPriority.value = '';
-    const todoCategory = document.querySelector('#todo-category-input').value;
-    todoCategory.value = '';
-    const todoForm = document.querySelector('#todo-form-wrapper');
-
-    todoForm.classList.toggle('show-todo-form');
-  }
-
   static newCategory(event) {
     const projectInput = document.querySelector('#project-input').value;
-    if (!projectInput) {
-      alert('Project need a name.');
-    } else {
-      const project = new Project(projectInput);
-      const categorySelect = document.querySelector('#todo-category-input');
+    const project = new Project(projectInput);
+    const categorySelect = document.querySelector('#todo-category-input');
 
-      Storage.saveProject(project);
-      const projects = Storage.getList();
-      content().createOption(categorySelect, projects);
-      content().createProjectCard(project);
+    Storage.saveProject(project);
+    const projects = Storage.getList();
+    content().createOption(categorySelect, projects);
+    content().createProjectCard(project);
 
-      const formattedProject = project.projectName.split(' ').join('-');
-      content().createListWrapper(formattedProject);
-    }
-    UI.clearProjectFields();
+    const formattedProject = project.projectName.split(' ').join('-');
+    content().createListWrapper(formattedProject);
     event.preventDefault();
   }
 
@@ -87,22 +64,19 @@ const UI = class {
     const todoDueDate = document.querySelector('#todo-duedate-input').value;
     const todoPriority = document.querySelector('input[name="todo-priority"]:checked').value;
     const todoCategory = document.querySelector('#todo-category-input').value;
-    if (!todoTitle) {
-      alert('Todo need at least Title');
-    } else {
-      const todo = new Todo(todoTitle,
-        todoDescription,
-        todoDueDate,
-        todoPriority,
-        todoCategory);
-      Storage.saveTodo(todo);
-      const formattedProject = todoCategory.toLowerCase().split(' ').join('-');
-      const wrapper = document.querySelector(`#${formattedProject}`);
-      wrapper.appendChild(content().collapsedTodoCard(todo));
-      wrapper.appendChild(content().expandedTodoCard(todo));
-      wrapper.classList.toggle('show-todo-wrapper');
-    }
-    UI.clearTodoFields();
+    const todo = new Todo(todoTitle,
+      todoDescription,
+      todoDueDate,
+      todoPriority,
+      todoCategory);
+    Storage.saveTodo(todo);
+    const formattedProject = todoCategory.toLowerCase().split(' ').join('-');
+    const wrapper = document.querySelector(`#${formattedProject}`);
+    wrapper.appendChild(content().collapsedTodoCard(todo));
+    wrapper.appendChild(content().expandedTodoCard(todo));
+    const elementsOnShow = document.getElementsByClassName('show-todo-wrapper');
+    Array.from(elementsOnShow).forEach(element => { element.classList.toggle('show-todo-wrapper'); });
+    wrapper.classList.toggle('show-todo-wrapper');
     event.preventDefault();
   }
 

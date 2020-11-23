@@ -114,8 +114,9 @@ const content = () => {
 
   const collapsedTodoCard = (todo) => {
     const todoCard = htmlTags('article', '', 'collapsed-todo-card');
-    const todoTitle = htmlTags('span', '', `${todo.title}`, todo.title);
-    const todoDate = htmlTags('span', '', `${todo.dueDate}`, todo.dueDate);
+    const down = '\u27F1';
+    const todoTitle = htmlTags('span', '', `${todo.title}`, `${todo.title} ${down}`);
+    const todoDate = htmlTags('span', '', `${todo.dueDate}`, `${todo.dueDate}  ${down}`);
 
     todoTitle.setAttribute('data-id', todo.id);
     todoTitle.setAttribute('data-category', todo.category);
