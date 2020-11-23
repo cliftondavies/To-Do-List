@@ -53,7 +53,7 @@ This project was built using these technologies.
 
 
 ## Live version 
-  [Click here](https://rawcdn.githack.com/cliftondavies/To-Do-List/019d6a4b1c649272565264b1462ec00205ad802f/dist/index.html)
+  [Click here](https://rawcdn.githack.com/cliftondavies/To-Do-List/afd7930044f38e2c4babc5a087a46d0e31f12e82/dist/index.html)
 
 ### Usage
 
