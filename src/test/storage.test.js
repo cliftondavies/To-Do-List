@@ -1,5 +1,6 @@
 import Project from '../project';
 import Storage from '../storage';
+import Todo from '../todo';
 
 test('Local storage get list', () => {
   const getList = Storage.getList();
@@ -7,21 +8,15 @@ test('Local storage get list', () => {
 });
 
 test('Local storage save projects', () => {
-  expect(Storage.saveProject('test project', 'default')).toBe(localStorage.setItem('list', JSON.stringify('test project')));
+  const projects = Storage.getList();
+  const fakeProject = new Project('fakeproject');
+  projects.push(fakeProject);
+  expect(Storage.saveProject(fakeProject)).toBe(localStorage.setItem('list', JSON.stringify(projects)));
 });
 
 test('Local storage save todos', () => {
+  const fakeTodo = new Todo('fakeTodo', 'description', 12 / 12 / 2020, 'High', 'default', 'Incomplete');
   const projects = Storage.getList();
-  const project = 'default';
-  const index = projects.indexOf(project);
-  project.list.push('todo');
-  projects[index] = project;
-  expect(Storage.saveTodo('todo')).toBe(localStorage.setItem('list', JSON.stringify('todo')));
+  expect(Storage.saveTodo(fakeTodo))
+    .toBe(localStorage.setItem('list', JSON.stringify(projects)));
 });
-
-test('Local storage can delete projects', () => {
-  const projects = ['default', 'todo'];
-  expect(Storage.removeProject('default', 1)).toBe(
-    projects.splice(1, 1),
-    localStorage.setItem('list', JSON.stringify(projects)))
-})
