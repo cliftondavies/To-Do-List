@@ -26,11 +26,6 @@ const Storage = class {
     projects[index] = project;
     localStorage.setItem('list', JSON.stringify(projects));
   }
-
-  static removeProject(projects, index) {
-    projects.splice(index, 1);
-    localStorage.setItem('list', JSON.stringify(projects));
-  }
 };
 
 export { Storage as default };
